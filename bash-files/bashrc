@@ -1,1 +1,36 @@
 alias ll='ls -GFlh'
+alias scp2='rsync -avzP'
+alias sshk='ssh -o ServerAliveInterval=5 -o ServerAliveCountMax=1'
+alias prettify-json='python -mjson.tool'
+
+# Git aliases
+alias gl="git log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold black)[%an]%C(reset)%C(bold yellow)%d%C(reset)' --all"
+alias gdc="git diff --cached"
+alias gs="git status"
+alias gd="git diff"
+
+# Bash history
+export HISTCONTROL=ignorespace
+
+# Functions
+targrep() {
+  local taropt=""
+  if [[ ! -f "$2" ]]; then
+    echo "Usage: targrep pattern file ..."
+  fi
+  while [[ -n "$2" ]]; do
+    if [[ ! -f "$2" ]]; then
+      echo "targrep: $2: No such file" >&2
+    fi
+    case "$2" in
+      *.tar.gz) taropt="-z" ;;
+      *) taropt="" ;;
+    esac
+    while read filename; do
+      tar $taropt -xOf "$2" \
+       | grep "$1" \
+       | sed "s|^|$filename:|";
+    done < <(tar $taropt -tf $2 | grep -v '/$')
+  shift
+  done
+}
