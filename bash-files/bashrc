@@ -12,6 +12,9 @@ alias gd="git diff"
 # Bash history
 export HISTCONTROL=ignorespace
 
+# Shell prompt
+PS1="\[\`if [[ \$? = "0" ]]; then echo '\e[32m\h\e[0m'; else echo '\e[31m\h\e[0m' ; fi\`:\$PWD\n\$ "
+
 # Functions
 targrep() {
   local taropt=""
