@@ -13,7 +13,7 @@ alias gd="git diff"
 export HISTCONTROL=ignorespace
 
 # Shell prompt
-PS1="\[\`if [[ \$? = "0" ]]; then echo '\e[4;36m\]\d \t\e[0m'; else echo '\e[4;31m\]\d \t\e[0m' ; fi\`:\$PWD\n\e[1;36m\]\$\e[0m "
+PS1="\`if [[ \$? = "0" ]]; then echo '\[\e[4;36m\]\d \t\[\e[0m\]'; else echo '\[\e[4;31m\]\d \t\[\e[0m\]' ; fi\`:\$PWD\n\[\e[1;36m\]\$ \[\e[0m\] "
 
 # Functions
 targrep() {
