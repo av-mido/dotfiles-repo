@@ -8,6 +8,7 @@ alias gl="git log --graph --abbrev-commit --decorate --date=relative --format=fo
 alias gdc="git diff --cached"
 alias gs="git status"
 alias gd="git diff"
+alias gm="git commit -m"
 
 # Bash history
 export HISTCONTROL=ignorespace
